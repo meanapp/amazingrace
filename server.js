@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
+var fs = require('fs');
 var config = require('./config.js');
 var Schema = mongoose.Schema;
 
@@ -84,7 +85,34 @@ app.get('api/confirmUser/:id', function(req, res) {
     });
 });
 
+app.get('api/admin/dashboard', function(req, res) {
+    var count = 0;
+    fs.readFile('pageCount.txt', function(err, data) {
+        if(err) {
+            console.log("Error");
+        } else {
+            count = data.toString();
+        }
+    });
+    
+    res.json({count: count});
+})
+
 app.get('*', function(req, res) {
+    fs.readFile('pageCount.txt', function(err, data) {
+		if(err) {
+			console.log("Error");
+		} else {
+			var count = parseInt(data.toString()) + 1;
+			fs.writeFile('pageCount.txt', count, function(err){
+				if(err) {
+					console.log("Could not write");
+				} else {
+					console.log(count);
+				}
+			});
+		}
+	});
 	res.sendFile(__dirname + '/public/views/index.html');	
 });
 
