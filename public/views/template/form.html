@@ -1,0 +1,37 @@
+<div class = "container">
+    <h3>Please fill the below form to register</h3>
+    <br>
+    <form ng-submit = "register()">
+        <table>
+            <tr>
+                <td><label for = "firstname">First Name</label></td>
+                <td><input type="text" class = "form-control" ng-model = "user.firstname" placeholder="First Name" required></td>
+            </tr>
+            
+            <tr>
+                <td><label for = "lastname">Last Name</label></td>
+                <td><input type="text" class = "form-control" ng-model = "user.lastname" placeholder="Last Name" required></td>
+            </tr>
+            
+            <tr>
+                <td><label for = "emailaddress">Quinnox Mail Address</label></td>
+                <td><input type="text" class = "form-control" ng-model = "user.emailaddress" placeholder="Email Address" required><span>@quinnox.com</span></td>
+            </tr>
+            
+            <tr>
+                <td><label for = "workstation">Your Work Station Number</label></td>              
+                <td><input type="text" class = "form-control" ng-model = "user.workstation" placeholder="Work Station Number" required></td>
+            </tr>
+            <br>
+            
+            <tr>
+                <td><label for = "contactnumber">Contact Number</label></td>
+                <td><input type="tel" pattern="[0-9]{10,10}" maxlength="10" required class = "form-control" ng-model = "user.contactnumber" placeholder="Contact Number"></td>
+            </tr>
+        </table>
+        <br>
+        <input type="submit" value = "Register" class = "btn btn-success form-btn" style="margin-left: 20px;">
+        <input type="reset" value = "Reset" class = "btn btn-default form-btn">
+        <a href="/back" class = "btn btn-warning form-btn">Cancel</a>
+    </form>
+</div>
